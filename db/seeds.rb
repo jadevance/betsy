@@ -61,7 +61,7 @@ products = [
     stock: 15,
     description: "Why dirty the dishes?! Design your personal beard bowl today!",
     category: "Personal Care",
-    photo_url: 'Beard_Bowl.jpg', 
+    photo_url: 'Beard_Bowl.jpg',
     weight: 3
   },
   {
@@ -71,7 +71,7 @@ products = [
     stock: 15,
     description: "One-of-kind seating!",
     category: "Furniture",
-    photo_url: 'stump.jpg', 
+    photo_url: 'stump.jpg',
     weight: 25
   },
   {
@@ -147,7 +147,10 @@ end
 orders = [
   {
     user_id: 1,
-    status: "pending"
+    status: "pending",
+    city: "seattle",
+    state: "wa",
+    zip: "98118"
   }
 ]
 
