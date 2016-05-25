@@ -88,8 +88,13 @@ class OrdersController < ApplicationController
       @order = Order.create(status: "pending")
       session[:order_id] = @order.id
     end
-    render :order_review
+    render :shipping
   end
+
+  def shipping
+    # stuff here! 
+    # render :order_review 
+  end 
 
   def update
     #pass in an order_id
