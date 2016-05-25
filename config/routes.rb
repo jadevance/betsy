@@ -1,4 +1,19 @@
 Rails.application.routes.draw do
+
+# need to update current route that takes user's info in the checkout form and reroutes to the carriers controller create method, to create a new instance of carriers wrapper.
+
+# need a route for the radio button choice to a new carriers_controller method or to the current method that takes the user's info and stores it for the order.
+
+
+
+
+
+
+
+
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
