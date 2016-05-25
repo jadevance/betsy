@@ -34,6 +34,9 @@ Rails.application.routes.draw do
     end
   end
 
+
+  #get '/ship' => 'carriers#create', as: 'ship'
+
   get '/cart' => 'orders#cart'
 
   get '/cart/checkout' => 'orders#checkout'

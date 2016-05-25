@@ -1,4 +1,4 @@
-require 'httparty'
+#require 'httparty'
 
 class CarriersWrapper
   #BASE_URL will be the Heroku https
@@ -15,7 +15,7 @@ class CarriersWrapper
 
 
   def self.fetch(destination_query)
-    #rates = HTTParty.post(BASE_URL + blah blah #{destination_query}).parsed_response <-- is this a post? to the api?
+    rates = HTTParty.post(BASE_URL + blah blah #{destination_query}).parsed_response <-- is this a post? to the api?
 
     #How is the info coming back? Do we need to set variables here to reach into the response we recieve for an inner hash?
 
