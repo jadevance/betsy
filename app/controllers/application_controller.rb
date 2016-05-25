@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   def current_order
     # user_id = session[:user_id] ||= nil
 
-    if session[:order_id].nil? #&& Order.find_by(order_id: session[:order_id]).status == "pending"
+      if session[:order_id].nil? || Order.find_by(id: session[:order_id]).nil?
        order = Order.create(status: "pending")
        session[:order_id] = order.id
     #   @current_order = Order.find(session[:order_id])

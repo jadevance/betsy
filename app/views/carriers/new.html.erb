@@ -2,7 +2,7 @@
 
 
 <!-- I'm not really sure if its necessary to initialize t the end of the fetch method in the wrapper in order to reach into the hash/array we got back and seperate the fedex and ups into into new mini arrays that are assigned to the instance variables...if so we can do something like this below and reach into each here, but I'm not sure how.... or we could just pass the @destination_query and iterate over it here. -->
-
+<%= params %>
 
 <%= radio_button_tag(:rate, "@fedex.standard %>") %>
 <%= label_tag(:shipping_type, "FedEx standard shipping" ) %>
