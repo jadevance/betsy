@@ -14,7 +14,6 @@ class ApplicationController < ActionController::Base
 
   def current_order
     # user_id = session[:user_id] ||= nil
-
       @current_order = Order.find_by(id: session[:order_id]) if session[:order_id]  
       @current_order ||= Order.new(status: "pending") 
       # session[:order_id] = @current_order.id
@@ -24,8 +23,8 @@ class ApplicationController < ActionController::Base
     # end
 
     # @current_order ||= Order.find_by(id: session[:order_id])
-
   end
+  
   # @current_order
   def seller?
     current_user && current_user.type == "seller"
