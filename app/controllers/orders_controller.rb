@@ -53,7 +53,7 @@ class OrdersController < ApplicationController
   end
 
   def add_to_cart
-    current_order.order_items << OrderItem.create(order_id: session[:order_id], product_id: params[:product_id], quantity: 1)
+    current_order.order_items << OrderItem.create(order_id: session[:order_id], product_id: params[:product_id], width: params[:width], height: params[:height], length: params[:length], weight: params[:weight], quantity: 1)
     redirect_to cart_path
   end
 

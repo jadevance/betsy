@@ -42,7 +42,10 @@ products = [
     description: "Are you as tired of your baby’s lack of facial hair as I am? Well get ready my friends, because the days of mustache-less babies are NO MORE!",
     category: "Baby",
     photo_url: 'ryan.jpg',
-    weight: 1
+    weight: 1,
+    height: 5,
+    width: 5,
+    length: 5
   },
   {
     name: "Glitter Beard Kit",
@@ -52,7 +55,10 @@ products = [
     description: "Celebrate every day with a festive Glitter Beard! So easy to do! AND you'll leave behind a little glitter everywhere you go!",
     category: "Personal Care",
     photo_url: 'Glitter_Beard.jpg',
-    weight: 2
+    weight: 2,
+    height: 5,
+    width: 5,
+    length: 5
   },
   {
     name: "How-To-Guide to your Beard Bowl",
@@ -62,7 +68,10 @@ products = [
     description: "Why dirty the dishes?! Design your personal beard bowl today!",
     category: "Personal Care",
     photo_url: 'Beard_Bowl.jpg',
-    weight: 3
+    weight: 3,
+    height: 5,
+    width: 5,
+    length: 5
   },
   {
     name: "STumP",
@@ -72,7 +81,10 @@ products = [
     description: "One-of-kind seating!",
     category: "Furniture",
     photo_url: 'stump.jpg',
-    weight: 25
+    weight: 25,
+    height: 5,
+    width: 5,
+    length: 5
   },
   {
     name: "Crocheted Baby Beard",
@@ -82,7 +94,10 @@ products = [
     description: "One-of-kind warmth!",
     category: "Baby",
     photo_url: 'Baby_beard.jpg',
-    weight: 1
+    weight: 1,
+    height: 5,
+    width: 5,
+    length: 5
   },
   {
     name: "Baby Mason Bottle",
@@ -92,7 +107,10 @@ products = [
     description: "One-of-kind drinking!",
     category: "Baby",
     photo_url: 'baby_mason_bottle.jpg',
-    weight: 2
+    weight: 2,
+    height: 5,
+    width: 5,
+    length: 5
   },
   {
     name: "Headphones All Ways",
@@ -102,7 +120,10 @@ products = [
     description: "Don't get caught with the wrong audioware!",
     category: "Miscellaneous",
     photo_url: 'Headers.jpg',
-    weight: 2
+    weight: 2,
+    height: 5,
+    width: 5,
+    length: 5
   },
   {
     name: "Longboard Stroller 1/10th Model",
@@ -112,7 +133,10 @@ products = [
     description: "You're still cool even with a kid!",
     category: "Baby",
     photo_url: 'Longboard_stroller.jpg',
-    weight: 10
+    weight: 10,
+    height: 5,
+    width: 5,
+    length: 5
   },
   {
     name: "Selfie Shirt",
@@ -122,7 +146,10 @@ products = [
     description: "One-of-kind shirt!",
     category: "Clothing",
     photo_url: 'SelfieShirt.jpg',
-    weight: 1
+    weight: 1,
+    height: 5,
+    width: 5,
+    length: 5
   },
   {
     name: "Subway Record Player",
@@ -132,7 +159,10 @@ products = [
     description: "Make friends on the subway!",
     category: "Miscellaneous",
     photo_url: 'Subway_record_player.jpg',
-    weight: 15
+    weight: 15,
+    height: 5,
+    width: 5,
+    length: 5
   },
 ]
 

@@ -19,6 +19,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @order_item = current_order.order_items.find_by(product_id: params[:id]) #returns nil if not found
+    #@product has product dimensions
     render :show
   end
 
@@ -80,7 +81,7 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.permit(product: [:name, :description, :category, :status, :price, :photo_url, :stock, :user_id])
+    params.permit(product: [:name, :description, :category, :status, :price, :photo_url, :stock, :user_id, :weight, :length, :height, :width])
   end
 
 end
