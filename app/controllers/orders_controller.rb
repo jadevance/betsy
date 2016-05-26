@@ -53,8 +53,7 @@ class OrdersController < ApplicationController
   end
 
   def add_to_cart
-      current_order.order_items << OrderItem.create(order_id: session[:order_id], product_id: params[:product_id], quantity: 1)
-    #  binding.pry
+    current_order.order_items << OrderItem.create(order_id: session[:order_id], product_id: params[:product_id], quantity: 1)
     redirect_to cart_path
   end
 
@@ -88,13 +87,8 @@ class OrdersController < ApplicationController
       @order = Order.create(status: "pending")
       session[:order_id] = @order.id
     end
-    render :shipping
+    render :order_review
   end
-
-  def shipping
-    # stuff here! 
-    # render :order_review 
-  end 
 
   def update
     #pass in an order_id
