@@ -66,9 +66,10 @@ class OrdersController < ApplicationController
 
     #this will call the wrapper method that called the api and sends the destination info as well as the dimension info for the order_items
 
+    @order = current_order
     @response = CarriersWrapper.send_request(rate_info)
     if @response.nil?
-      redirect_to :checkout
+      render :checkout
     else
       render :shipping
     end
@@ -85,7 +86,6 @@ class OrdersController < ApplicationController
   end
 
   def order_placed #call when "confirm order/pay" button is used, params should include status update
-
     @items = current_order.order_items
     @items.each do |item|
       product_id = item.product_id
@@ -100,6 +100,7 @@ class OrdersController < ApplicationController
     end
     @order_placed = current_order
     @order_placed.update({status: "paid"})
+    @order_placed.update({shipping_price: params["shipping_price"], shipping_name: params["shipping_name"]})
     if session[:user_id]
       @order = Order.create(status: "pending", user_id: session[:user_id])
       session[:order_id] = @order.id

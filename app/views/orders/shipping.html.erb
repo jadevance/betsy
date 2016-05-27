@@ -1,28 +1,37 @@
 
-<%= params %>
 
-<!-- @response = each come back as an array of arrays of arrays....response = [ups_rates, usps_rates, fedex_rates] and each of those has multiple arrays with two values each, the rate and the shipping service type....how to know which is which?-->
+<div class="container">
+  <h2>Please choose a shipping option:</h2>
+  <form role="form">
+    <label class="radio-inline">
 
-<%= form_tag(order_placed_path, method: :patch) do %>
+  <%= form_tag(order_placed_path, method: :patch) do %>
 
+    <% @response.ups_rates.each do |rate| %>
+      <%= radio_button_tag(:shipping_price, rate[1]) %>
+      <%= hidden_field_tag(:shipping_name, "UPS #{rate[0]}") %>
+      <%= label_tag(:shipping_name, "UPS: #{rate[0]} #{rate[1]}") %>
+      <% end %>
 
-  <% @response.ups_rates.each do |rate| %>
-    <%= radio_button_tag(:rate, rate[1]) %>
-    <%= label_tag(:shipping_type, "UPS: #{rate[0]} #{rate[1]}") %>
+      <% @response.usps_rates.each do |rate| %>
+      <%= radio_button_tag(:shipping_price, rate[1]) %>
+      <%= hidden_field_tag(:shipping_name, "USPS #{rate[0]}") %>
+      <%= label_tag(:shipping_name, "USPS: #{rate[0]} #{rate[1]}") %>
+      <% end %>
+
+      <% @response.fedex_rates.each do |rate| %>
+      <%= radio_button_tag(:shipping_price, rate[1]) %>
+      <%= hidden_field_tag(:shipping_name, "FedEx #{rate[0]}") %>
+      <%= label_tag(:shipping_name, "FedEx: #{rate[0]} #{rate[1]}") %>
+      <% end %>
+
+      <%= submit_tag "Select Shipping" %>
   <% end %>
 
-  <% @response.usps_rates.each do |rate| %>
-    <%= radio_button_tag(:rate, rate[1]) %>
-    <%= label_tag(:shipping_type, "USPS: #{rate[0]} #{rate[1]}") %>
-  <% end %>
+    </label>
+  </form>
+</div>
 
-  <% @response.fedex_rates.each do |rate| %>
-    <%= radio_button_tag(:rate, rate[1]) %>
-    <%= label_tag(:shipping_type, "FedEx: #{rate[0]} #{rate[1]}") %>
-  <% end %>
-
-  <%= submit_tag "Select Shipping" %>
-<% end %>
 
 
 
