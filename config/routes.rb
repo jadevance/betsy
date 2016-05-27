@@ -31,10 +31,10 @@ Rails.application.routes.draw do
 
   get '/cart' => 'orders#cart'
 
-  get '/cart/checkout' => 'orders#checkout'
+  get '/cart/checkout' => 'orders#checkout', :as => 'cart_checkout'
   patch '/cart/shipping' => 'orders#shipping', :as => 'shipping'
   patch '/cart/checkout' => 'orders#order_placed', :as => 'order_placed'
-  get '/cart/checkout/review_order/:id' => 'order#review'
+  get '/cart/checkout/review_order/:id' => 'orders#review'
 
   resources :sessions, :only => [:new, :create]
   delete "/logout" => "sessions#destroy"

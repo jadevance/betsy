@@ -14,7 +14,7 @@ Order total:
 $<%= @sum %>
 <br />
 <h2>Enter your order details below:</h2>
-CVV:
+
 <%= form_for @order, url: shipping_path, html: {method: :patch} do |f| %>
 
   <p><%= f.label :cc_digits %>

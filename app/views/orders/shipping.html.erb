@@ -2,10 +2,10 @@
 
 <div class="container">
   <h2>Please choose a shipping option:</h2>
-  <form role="form">
+
     <label class="radio-inline">
 
-  <%= form_tag(order_placed_path, method: :patch) do %>
+  <%= form_tag order_placed_path, method: :patch do %>
 
     <% @response.ups_rates.each do |rate| %>
       <%= radio_button_tag(:shipping_price, rate[1]) %>
@@ -29,7 +29,7 @@
   <% end %>
 
     </label>
-  </form>
+  
 </div>
 
 

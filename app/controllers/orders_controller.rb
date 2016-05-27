@@ -51,28 +51,29 @@ class OrdersController < ApplicationController
 
   def checkout
     @order = current_order
-    render :checkout  #this is the form for the customer to fill out their info
+  #  render :checkout  #this is the form for the customer to fill out their info
   end
 
   def shipping
-    current_order.update checkout_order_params[:order]
+    current_order.update(checkout_order_params[:order])
 
     rate_info = { }
-    rate_info[:order][:order_items] = current_order.order_items
     rate_info[:origin] = { city: "Seattle", state: "WA", zip: 98118 }
     rate_info[:order] = { city: params[:order][:city], state: params[:order][:state], zip: params[:order][:zip]}
+    rate_info[:order][:order_items] = current_order.order_items
 
-    rate_info = params.to_json
+    rate_info.to_json
+
 
     #this will call the wrapper method that called the api and sends the destination info as well as the dimension info for the order_items
 
-    @order = current_order
+    # @order = current_order
     @response = CarriersWrapper.send_request(rate_info)
-    if @response.nil?
-      render :checkout
-    else
+    # if @response.nil?
+    #   render :checkout
+    # else
       render :shipping
-    end
+    # end
   end
 
   def add_to_cart
@@ -101,6 +102,7 @@ class OrdersController < ApplicationController
     @order_placed = current_order
     @order_placed.update({status: "paid"})
     @order_placed.update({shipping_price: params["shipping_price"], shipping_name: params["shipping_name"]})
+    @shipping_price = params["shipping_price"].to_i
     if session[:user_id]
       @order = Order.create(status: "pending", user_id: session[:user_id])
       session[:order_id] = @order.id
