@@ -6,14 +6,6 @@ Rails.application.routes.draw do
 
 
 
-
-
-
-
-
-
-
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -35,12 +27,13 @@ Rails.application.routes.draw do
   end
 
 
-  get '/shippping' => 'orders#shipping'
+  #get '/shipping' => 'orders#shipping'
 
   get '/cart' => 'orders#cart'
 
   get '/cart/checkout' => 'orders#checkout'
-  patch '/cart/checkout' => 'orders#order_placed' #does patch need to point to checkout page? Or to the destination?
+  patch '/cart/shipping' => 'orders#shipping', :as => 'shipping'
+  patch '/cart/checkout' => 'orders#order_placed', :as => 'order_placed'
   get '/cart/checkout/review_order/:id' => 'order#review'
 
   resources :sessions, :only => [:new, :create]

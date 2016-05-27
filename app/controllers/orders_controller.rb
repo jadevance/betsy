@@ -1,3 +1,5 @@
+require 'CarriersWrapper'
+
 class OrdersController < ApplicationController
   def index
     # @orders = Order.find_by(session_id: session[:session_id])
@@ -49,7 +51,27 @@ class OrdersController < ApplicationController
 
   def checkout
     @order = current_order
-    render :checkout
+    render :checkout  #this is the form for the customer to fill out their info
+  end
+
+  def shipping
+    current_order.update checkout_order_params[:order]
+
+    rate_info = { }
+    rate_info[:order][:order_items] = current_order.order_items
+    rate_info[:origin] = { city: "Seattle", state: "WA", zip: 98118 }
+    rate_info[:order] = { city: params[:order][:city], state: params[:order][:state], zip: params[:order][:zip]}
+
+    rate_info = params.to_json
+
+    #this will call the wrapper method that called the api and sends the destination info as well as the dimension info for the order_items
+
+    @response = CarriersWrapper.send_request(rate_info)
+    if @response.nil?
+      redirect_to :checkout
+    else
+      render :shipping
+    end
   end
 
   def add_to_cart
@@ -63,6 +85,7 @@ class OrdersController < ApplicationController
   end
 
   def order_placed #call when "confirm order/pay" button is used, params should include status update
+
     @items = current_order.order_items
     @items.each do |item|
       product_id = item.product_id
@@ -76,10 +99,7 @@ class OrdersController < ApplicationController
       item.update(checkout_price: Product.find_by(id: product_id).price)
     end
     @order_placed = current_order
-    order_info = create_order_params[:order]
-    order_info[:cc_digits] = order_info[:cc_digits][-4..-1].to_i
-    order_info[:status] = "paid"
-    @order_placed.update(order_info)
+    @order_placed.update({status: "paid"})
     if session[:user_id]
       @order = Order.create(status: "pending", user_id: session[:user_id])
       session[:order_id] = @order.id
@@ -100,5 +120,10 @@ class OrdersController < ApplicationController
   private
   def create_order_params
     params.permit(order: [:user_id, :status, :mailing_address, :cc_digits, :expiration]) #double check attributes
+  end
+
+  def checkout_order_params
+    params[:order][:cc_digits] = params[:order][:cc_digits][-4..-1].to_i
+    params.permit(order: [:mailing_address, :cc_digits, :expiration])
   end
 end

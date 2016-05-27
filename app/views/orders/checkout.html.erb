@@ -13,7 +13,7 @@ $<%= @sum %>
 <br />
 <h2>Enter your order details below:</h2>
 CVV:
-<%= form_for @order, url: cart_checkout_path, html: {method: :patch} do |f| %>
+<%= form_for @order, url: shipping_path, html: {method: :patch} do |f| %>
 
   <p><%= f.label :cc_digits %>
   <%= f.text_field :cc_digits, length: {is:16}%></p>

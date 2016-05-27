@@ -1,1 +1,31 @@
-<%= params %> 
+
+<%= params %>
+
+<!-- @response = each come back as an array of arrays of arrays....response = [ups_rates, usps_rates, fedex_rates] and each of those has multiple arrays with two values each, the rate and the shipping service type....how to know which is which?-->
+
+<%= form_tag(order_placed_path, method: :patch) do %>
+
+
+  <% @response.ups_rates.each do |rate| %>
+    <%= radio_button_tag(:rate, rate[1]) %>
+    <%= label_tag(:shipping_type, "UPS: #{rate[0]} #{rate[1]}") %>
+  <% end %>
+
+  <% @response.usps_rates.each do |rate| %>
+    <%= radio_button_tag(:rate, rate[1]) %>
+    <%= label_tag(:shipping_type, "USPS: #{rate[0]} #{rate[1]}") %>
+  <% end %>
+
+  <% @response.fedex_rates.each do |rate| %>
+    <%= radio_button_tag(:rate, rate[1]) %>
+    <%= label_tag(:shipping_type, "FedEx: #{rate[0]} #{rate[1]}") %>
+  <% end %>
+
+  <%= submit_tag "Select Shipping" %>
+<% end %>
+
+
+
+
+<!-- this then goes to the controller ( the method will update the database or go back to our api if we were doing labels and tracking?) and params[:rate] will contain one of the options that they chose-->
+<!-- i think this is a post request in the route? -->
